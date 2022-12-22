@@ -3,8 +3,12 @@
 #include "IMyPanel.h"
 using namespace vgui;
 #include <vgui/IVGui.h>
+#include <vgui/IScheme.h>
 #include <vgui_controls/Frame.h>
 #include <vgui_controls/Button.h>
+#include <vgui_controls/RichText.h>
+#include <vgui_controls/ScalableImagePanel.h>
+#include <vgui_controls/Label.h>
 
 //CMyPanel class: Tutorial example class
 class CMyPanel : public vgui::Frame
@@ -23,6 +27,9 @@ protected:
 private:
 	//Other used VGUI control Elements:
 	Button* m_pCloseButton;
+	RichText* m_pDialogue;
+	ScalableImagePanel* m_pIcon;
+	IScheme* m_pSchene;
 };
 
 // Constuctor: Initializes the Panel
@@ -57,6 +64,18 @@ CMyPanel::CMyPanel(vgui::VPANEL parent)
 	m_pCloseButton->SetPos(433, 472);
 	m_pCloseButton->SetDepressedSound("common/bugreporter_succeeded.wav");
 	m_pCloseButton->SetReleasedSound("ui/buttonclick.wav");
+
+	//Text
+	RichText* m_pDialogue = new RichText(this, "RichText");
+	m_pDialogue->SetText("JERMAVEEEENUUSS!!!!!");
+	m_pDialogue->SetPos(200, 200);
+	m_pDialogue->SetSize(200, 200);
+	m_pDialogue->SetVisible(true);
+
+	//ImagePanel
+	ScalableImagePanel* m_pIcon = new ScalableImagePanel(this, "m_pIcon");
+	m_pIcon->SetScheme("ClientScheme.res");
+	m_pIcon->SetImage(scheme()->GetImage("myimage", false));
 }
 
 //Class: CMyPanelInterface Class. Used for construction.
@@ -100,7 +119,7 @@ void CMyPanel::OnTick()
 	SetVisible(cl_showmypanel.GetBool());
 }
 
-CON_COMMAND(OpenTestPanelFenix, "Toggles testpanelfenix on or off")
+CON_COMMAND(DialogueTestMenu, "Toggles testpanelfenix on or off")
 {
 	cl_showmypanel.SetValue(!cl_showmypanel.GetBool());
 	mypanel->Activate();

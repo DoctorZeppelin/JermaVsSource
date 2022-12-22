@@ -44,6 +44,7 @@ vgui::IInputInternal *g_InputInternal = NULL;
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
+#include <DialoguePanel.cpp>
 
 void GetVGUICursorPos( int& x, int& y )
 {
@@ -197,6 +198,8 @@ void VGui_CreateGlobalPanels( void )
 {
 	VPANEL gameToolParent = enginevgui->GetPanel( PANEL_CLIENTDLL_TOOLS );
 	VPANEL toolParent = enginevgui->GetPanel( PANEL_TOOLS );
+	//VPANEL ingameParent = enginevgui->GetPanel(PANEL_INGAMESCREENS);
+	VPANEL GameUiDll = enginevgui->GetPanel(PANEL_GAMEUIDLL);
 #if defined( TRACK_BLOCKING_IO )
 	VPANEL gameDLLPanel = enginevgui->GetPanel( PANEL_GAMEDLL );
 #endif
@@ -204,6 +207,7 @@ void VGui_CreateGlobalPanels( void )
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
+	DialoguePanel->Create(GameUiDll);
 
 	// Debugging or related tool
 	fps->Create( toolParent );
@@ -240,6 +244,7 @@ void VGui_Shutdown()
 	messagechars->Destroy();
 	loadingdisc->Destroy();
 	internalCenterPrint->Destroy();
+	DialoguePanel->Destroy();
 
 	if ( g_pClientMode )
 	{

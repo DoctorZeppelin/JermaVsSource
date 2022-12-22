@@ -46,7 +46,7 @@ CMyPanel::CMyPanel(vgui::VPANEL parent)
 
 	SetScheme(vgui::scheme()->LoadSchemeFromFile("resource/SourceScheme.res", "SourceScheme"));
 
-	LoadControlSettings("resource/UI/playermodelsel.res");
+	LoadControlSettings("resource/UI/MyPanel.res");
 
 	vgui::ivgui()->AddTickSignal(GetVPanel(), 100);
 

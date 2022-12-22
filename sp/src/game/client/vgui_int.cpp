@@ -199,8 +199,8 @@ void VGui_CreateGlobalPanels( void )
 {
 	VPANEL gameToolParent = enginevgui->GetPanel( PANEL_CLIENTDLL_TOOLS );
 	VPANEL toolParent = enginevgui->GetPanel( PANEL_TOOLS );
-	//VPANEL ingameParent = enginevgui->GetPanel(PANEL_INGAMESCREENS);
-	VPANEL GameUiDll = enginevgui->GetPanel(PANEL_GAMEUIDLL);
+	VPANEL ingameParent = enginevgui->GetPanel(PANEL_INGAMESCREENS);
+	//VPANEL GameUiDll = enginevgui->GetPanel(PANEL_GAMEUIDLL);
 #if defined( TRACK_BLOCKING_IO )
 	VPANEL gameDLLPanel = enginevgui->GetPanel( PANEL_GAMEDLL );
 #endif
@@ -208,7 +208,7 @@ void VGui_CreateGlobalPanels( void )
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
-	mypanel->Create(GameUiDll);
+	mypanel->Create(PANEL_INGAMESCREENS);
 
 	// Debugging or related tool
 	fps->Create( toolParent );

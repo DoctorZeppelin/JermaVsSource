@@ -23,7 +23,7 @@
 #include <KeyValues.h>
 #include "filesystem.h"
 #include "matsys_controls/matsyscontrols.h"
-#include "IMyPanel.h"
+
 
 #ifdef SIXENSE
 #include "sixense/in_sixense.h"
@@ -45,7 +45,7 @@ vgui::IInputInternal *g_InputInternal = NULL;
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
-
+#include "IMyPanel.h"
 
 void GetVGUICursorPos( int& x, int& y )
 {

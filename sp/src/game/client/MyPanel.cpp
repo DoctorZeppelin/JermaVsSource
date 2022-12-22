@@ -23,13 +23,14 @@ protected:
 	//VGUI overrides:
 	virtual void OnTick();
 	virtual void OnCommand(const char* pcCommand);
+	virtual void ApplySchemeSettings(vgui::IScheme* pScheme);
 
 private:
 	//Other used VGUI control Elements:
+	vgui::IImage* m_pActiveImage;
 	Button* m_pCloseButton;
 	RichText* m_pDialogue;
 	ScalableImagePanel* m_pIcon;
-	IScheme* m_pSchene;
 };
 
 // Constuctor: Initializes the Panel
@@ -41,8 +42,8 @@ CMyPanel::CMyPanel(vgui::VPANEL parent)
 	SetKeyBoardInputEnabled(true);
 	SetMouseInputEnabled(true);
 
-	SetProportional(false);
-	SetTitleBarVisible(true);
+	SetProportional(true);
+	SetTitleBarVisible(false);
 	SetMinimizeButtonVisible(false);
 	SetMaximizeButtonVisible(false);
 	SetCloseButtonVisible(false);
@@ -51,13 +52,21 @@ CMyPanel::CMyPanel(vgui::VPANEL parent)
 	SetVisible(true);
 
 
-	SetScheme(vgui::scheme()->LoadSchemeFromFile("resource/SourceScheme.res", "SourceScheme"));
+	SetScheme(vgui::scheme()->LoadSchemeFromFile("resource/DialogueScheme.res", "DialogueScheme"));
 
 	LoadControlSettings("resource/UI/mypanel.res");
 
 	vgui::ivgui()->AddTickSignal(GetVPanel(), 100);
 
 	DevMsg("MyPanel has been constructed\n");
+}
+
+void CMyPanel::ApplySchemeSettings(IScheme* pScheme)
+{
+	// load control settings...
+	LoadControlSettings("resource/dialoguescheme.res");
+
+	BaseClass::ApplySchemeSettings(pScheme);
 
 	//Button done
 	m_pCloseButton = new Button(this, "Button", "Close", this, "turnoff");
@@ -65,17 +74,22 @@ CMyPanel::CMyPanel(vgui::VPANEL parent)
 	m_pCloseButton->SetDepressedSound("common/bugreporter_succeeded.wav");
 	m_pCloseButton->SetReleasedSound("ui/buttonclick.wav");
 
-	//Text
-	RichText* m_pDialogue = new RichText(this, "RichText");
+	//Text -- Dialogue
+	RichText* m_pDialogue = new RichText(this, "dialogue");
 	m_pDialogue->SetText("JERMAVEEEENUUSS!!!!!");
-	m_pDialogue->SetPos(200, 200);
-	m_pDialogue->SetSize(200, 200);
+	m_pDialogue->SetFont(pScheme->GetFont("DefaultVerySmall"));
+	m_pDialogue->SetPos(342, 0);
+	m_pDialogue->SetSize(1579, 512);
 	m_pDialogue->SetVisible(true);
 
-	//ImagePanel
-	ScalableImagePanel* m_pIcon = new ScalableImagePanel(this, "m_pIcon");
+	//ImagePanel -- Speaker Icon
+	ScalableImagePanel* m_pIcon = new ScalableImagePanel(this, "talkericon");
 	m_pIcon->SetScheme("ClientScheme.res");
-	m_pIcon->SetImage(scheme()->GetImage("myimage", false));
+	m_pIcon->SetImage("IconTest");
+	m_pIcon->SetPos(200, 200);
+	m_pIcon->SetSize(200, 200);
+	m_pIcon->SetVisible(true);
+
 }
 
 //Class: CMyPanelInterface Class. Used for construction.

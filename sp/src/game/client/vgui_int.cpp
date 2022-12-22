@@ -208,7 +208,7 @@ void VGui_CreateGlobalPanels( void )
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
-	mypanel->Create(PANEL_INGAMESCREENS);
+	mypanel->Create(ingameParent);
 
 	// Debugging or related tool
 	fps->Create( toolParent );

@@ -23,6 +23,7 @@
 #include <KeyValues.h>
 #include "filesystem.h"
 #include "matsys_controls/matsyscontrols.h"
+#include "IMyPanel.h"
 
 #ifdef SIXENSE
 #include "sixense/in_sixense.h"
@@ -44,7 +45,7 @@ vgui::IInputInternal *g_InputInternal = NULL;
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
-#include <DialoguePanel.cpp>
+
 
 void GetVGUICursorPos( int& x, int& y )
 {
@@ -207,7 +208,7 @@ void VGui_CreateGlobalPanels( void )
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
-	DialoguePanel->Create(GameUiDll);
+	mypanel->Create(GameUiDll);
 
 	// Debugging or related tool
 	fps->Create( toolParent );
@@ -244,7 +245,7 @@ void VGui_Shutdown()
 	messagechars->Destroy();
 	loadingdisc->Destroy();
 	internalCenterPrint->Destroy();
-	DialoguePanel->Destroy();
+	mypanel->Destroy();
 
 	if ( g_pClientMode )
 	{

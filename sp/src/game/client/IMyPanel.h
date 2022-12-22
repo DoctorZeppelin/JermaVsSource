@@ -1,4 +1,4 @@
-class MyPanel
+abstract_class MyPanel
 {
 public:
 	virtual void		Create(vgui::VPANEL parent) = 0;

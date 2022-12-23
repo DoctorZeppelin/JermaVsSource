@@ -1,5 +1,5 @@
 //a
-abstract_class MyPanel
+abstract_class DialoguePanel
 {
 public:
 	virtual void		Create(vgui::VPANEL parent) = 0;
@@ -7,4 +7,4 @@ public:
 	virtual void		Activate(void) = 0;
 };
 
-extern MyPanel* mypanel;
+extern DialoguePanel* dialoguepanel;

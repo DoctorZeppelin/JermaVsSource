@@ -45,7 +45,7 @@ vgui::IInputInternal *g_InputInternal = NULL;
 
 // memdbgon must be the last include file in a .cpp file!!!
 #include "tier0/memdbgon.h"
-#include "IMyPanel.h"
+#include "IDialoguePanel.h"
 
 void GetVGUICursorPos( int& x, int& y )
 {
@@ -208,7 +208,7 @@ void VGui_CreateGlobalPanels( void )
 	internalCenterPrint->Create( gameToolParent );
 	loadingdisc->Create( gameToolParent );
 	messagechars->Create( gameToolParent );
-	mypanel->Create(ingameParent);
+	dialoguepanel->Create(ingameParent);
 
 	// Debugging or related tool
 	fps->Create( toolParent );
@@ -245,7 +245,7 @@ void VGui_Shutdown()
 	messagechars->Destroy();
 	loadingdisc->Destroy();
 	internalCenterPrint->Destroy();
-	mypanel->Destroy();
+	dialoguepanel->Destroy();
 
 	if ( g_pClientMode )
 	{
